@@ -1,4 +1,4 @@
-# Created by Shwetha at 7/15/2022
+# Created by Shuba at 7/15/2022
 Feature: Amazon product search tests
   # Enter feature description here
 
@@ -8,7 +8,7 @@ Feature: Amazon product search tests
     Then Verify "Mugs" are shown
 
 
-  Scenario: User can search for a product and add it
+  Scenario: User can add a product to cart
     Given Open Amazon page
     When Search for Contigo water bottles 24oz
     And Click on the first product
