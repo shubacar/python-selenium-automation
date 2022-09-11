@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+
 SIGN_IN_POPUP_BTN = (By.CSS_SELECTOR, '#nav-signin-tooltip span.nav-action-inner')
 ORDER_BUTTON=(By.XPATH, "//span[@class='nav-line-2' and contains(text(),'Orders')]")
 
@@ -12,6 +13,9 @@ ORDER_BUTTON=(By.XPATH, "//span[@class='nav-line-2' and contains(text(),'Orders'
 def open_amazon(context):
      context.driver.get('https://www.amazon.com/')
 
+@given("Open Amazon product page")
+def open_amazon_product(context):
+    context.app.main_page.open_sub()
 
 @when("User clicks on the orders")
 def click_order(context):
@@ -22,6 +26,30 @@ def click_order(context):
 @when("User clicks on the button on sign in popup")
 def click_signin_popup(context):
     context.driver.wait.until (EC.element_to_be_clickable(SIGN_IN_POPUP_BTN),message='No sign in popup found').click()
+
+@when("Hover over language options")
+def hover_lang(context):
+    context.app.header.hover_lang()
+
+@when("User selects department by alias {alias}")
+def select_dept(context,alias):
+    context.app.header.select_dept(alias)
+
+@when("Hover over new arrivals")
+def hover_newarrivals(context):
+    context.app.header.hover_newarrivals()
+
+@then("Spanish option is present")
+def verify_language(context):
+    context.app.header.verify_language()
+
+@then("Boys option is present")
+def verify_newarrivals(context):
+    context.app.header.verify_newarrivals()
+
+@then("Verify {category} department is selected")
+def verify_dept_selected(context,category):
+    context.app.search_results_page.verify_dept_selected(category)
 
 @then("Verify signin is clickable")
 def verify_signin_clickable(context):

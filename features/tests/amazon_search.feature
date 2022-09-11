@@ -16,11 +16,27 @@ Feature: Amazon product search tests
     And User clicks on the cart icon
     Then Verify the cart has 1 item
             |
-Scenario: Verify whether footer links are present
-  Given Open Amazon page
-  Then Whether 38 footer links are shown
+  Scenario: Verify whether footer links are present
+    Given Open Amazon page
+    Then Whether 38 footer links are shown
 
   Scenario: Verify bestseller links are present
     Given Open Amazon page
     When Click on bestsellers
     Then Verify 5 bestsellers are shown
+
+  Scenario: Verify user can see language options
+    Given Open Amazon page
+    When Hover over language options
+    Then Spanish option is present
+
+  Scenario: Verify user can select a department
+    Given Open Amazon page
+    When User selects department by alias appliances
+    And Search for Refrigerator
+    Then Verify appliances department is selected
+
+  Scenario: Verify user can see new arrivals
+    Given Open Amazon product page
+    When Hover over new arrivals
+    Then Boys option is present
